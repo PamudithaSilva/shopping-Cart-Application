@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Shopping Cart Application</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <h1>Login</h1>
+      <nav>
+        <a href="index.html">Shop</a>
+        <a href="login.html">Login</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container auth-page">
+    <section class="auth-card">
+      <h2>User Login</h2>
+      <p>Select a sign-in method.</p>
+
+      <button class="btn btn-primary login-btn" data-provider="Google">Login with Google</button>
+      <button class="btn btn-secondary login-btn" data-provider="Facebook">Login with Facebook</button>
+      <button class="btn btn-dark login-btn" data-provider="Passkey">Login with Passkey</button>
+
+      <hr />
+
+      <h3>Admin Login</h3>
+      <form id="adminLoginForm">
+        <label for="adminUsername">Username</label>
+        <input type="text" id="adminUsername" placeholder="admin" required />
+
+        <label for="adminPassword">Password</label>
+        <input type="password" id="adminPassword" placeholder="1234" required />
+
+        <button type="submit" class="btn btn-primary full-width">Login as Admin</button>
+      </form>
+
+      <p id="loginMessage" class="message"></p>
+    </section>
+  </main>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
