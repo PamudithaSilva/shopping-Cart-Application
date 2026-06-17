@@ -1,124 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shopping Cart Application</title>
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart Application</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
-
 <body>
-    <header class="topbar">
-        <div class="container nav">
-            <div class="brand">
-                <div class="brand-text">
-                    <h1>Shopping Cart</h1>
-                    <p>Fresh groceries and daily essentials</p>
-                </div>
-            </div>
-            <nav>
-                <a href="index.html" class="active">Shop</a>
-                <a href="login.html">Login</a>
-                <!-- <a href="admin.html">Admin</a> -->
-            </nav>
+
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>Shopping Cart</h1>
+          <p>Fresh groceries and daily essentials</p>
         </div>
-    </header>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Shop</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container layout">
-        <section class="content-area">
-            <div class="hero">
-                <h2>Browse Products</h2>
-                <p>Vegetables, fruits, cakes, biscuits and more.</p>
-            </div>
+  <!-- Hero Banner -->
+  <div class="shop-hero">
+    <div class="container shop-hero-inner">
+      <div class="shop-hero-text">
+        <span class="hero-tag">🛒 Fresh & Fast Delivery</span>
+        <h2>Browse Fresh Products</h2>
+        <p>Vegetables, fruits, cakes, biscuits and more — delivered to your door.</p>
+      </div>
+      
+    </div>
+  </div>
 
-            <div class="toolbar">
-                <div id="categoryFilters" class="category-list"></div>
-                <input type="text" id="searchInput" placeholder="Search products..." />
-            </div>
+  <main class="container shop-layout">
 
-            <div id="productGrid" class="product-grid"></div>
-        </section>
+    <!-- Left: Products -->
+    <section class="content-area">
 
-        <aside class="cart-panel">
-            <h2>Your Cart</h2>
-            <div id="cartItems" class="cart-items"></div>
+      <!-- Toolbar -->
+      <div class="shop-toolbar">
+        <div id="categoryFilters" class="category-list"></div>
+        <div class="search-wrap">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search products..." class="search-input" />
+        </div>
+      </div>
 
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Items Total</span>
-                    <span id="itemsTotal">LKR 0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span>Delivery</span>
-                    <span id="deliveryFee">LKR 250.00</span>
-                </div>
-                <div class="summary-row grand-total">
-                    <span>Grand Total</span>
-                    <span id="grandTotal">LKR 250.00</span>
-                </div>
-            </div>
+      <!-- Product count bar -->
+      <div class="products-bar">
+        <span id="productCount" class="products-count">Loading products...</span>
+      </div>
 
-            <button id="checkoutBtn" class="btn btn-primary full-width">Checkout</button>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
 
-            <div id="checkoutSummary" class="checkout-box hidden">
-                <h3>Order Summary</h3>
-                <div id="summaryContent"></div>
-            </div>
-        </aside>
-    </main>
+    <!-- Right: Cart -->
+    <aside class="cart-panel">
 
-    <script src="js/data.js"></script>
-    <script src="js/app.js"></script>
+      <div class="cart-header">
+        <div class="cart-title-row">
+          <h2>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+            Your Cart
+          </h2>
+          <span id="cartBadge" class="cart-badge hidden">0</span>
+        </div>
+      </div>
+
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Items Total</span>
+          <span id="itemsTotal">LKR 0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery</span>
+          <span id="deliveryFee">LKR 0.00</span>
+        </div>
+        <div class="summary-row grand-total">
+          <span>Grand Total</span>
+          <span id="grandTotal">LKR 0.00</span>
+        </div>
+      </div>
+
+      <button id="checkoutBtn" class="btn-checkout">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        Proceed to Checkout
+      </button>
+
+      <div id="checkoutSummary" class="checkout-box hidden">
+        <div class="checkout-box-header">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Order Summary
+        </div>
+        <div id="summaryContent"></div>
+      </div>
+
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div>
+          <h3>Shopping Cart</h3>
+          <p>Fresh groceries and daily essentials delivered to your door.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="index.html">All Products</a></li>
+            <li><a href="index.html">Vegetables</a></li>
+            <li><a href="index.html">Fruits</a></li>
+            <li><a href="index.html">Cakes</a></li>
+            <li><a href="index.html">Biscuits</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="login.html">User Login</a></li>
+            <li><a href="login.html">Admin Login</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Admin</h4>
+          <ul>
+            <li><a href="admin.html">Admin Panel</a></li>
+            <li><a href="admin.html">Manage Products</a></li>
+            <li><a href="admin.html">Manage Categories</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Shopping Cart Application. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
-<footer class="site-footer">
-  <div class="container footer-inner">
-
-    <div class="footer-brand">
-      <div>
-        <h3>Shopping Cart</h3>
-        <p>Fresh groceries and daily essentials delivered to your door.</p>
-      </div>
-    </div>
-
-    <div class="footer-links">
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="index.html">All Products</a></li>
-          <li><a href="index.html">Vegetables</a></li>
-          <li><a href="index.html">Fruits</a></li>
-          <li><a href="index.html">Cakes</a></li>
-          <li><a href="index.html">Biscuits</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Account</h4>
-        <ul>
-          <li><a href="login.html">Login</a></li>
-          <li><a href="login.html">User Login</a></li>
-          <li><a href="login.html">Admin Login</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Admin</h4>
-        <ul>
-          <li><a href="admin.html">Admin Panel</a></li>
-          <li><a href="admin.html">Manage Products</a></li>
-          <li><a href="admin.html">Manage Categories</a></li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <div class="container footer-bottom-inner">
-      <p>&copy; 2026 Shopping Cart Application. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
 </html>
