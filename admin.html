@@ -1,108 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel - Shopping Cart Application</title>
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Shopping Cart Application</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
 </head>
-
 <body>
-    <header class="topbar">
-        <div class="container nav">
-            <div class="brand">
-                <div class="brand-text">
-                    <h1>Shopping Cart</h1>
-                    <p>Fresh groceries and daily essentials</p>
-                </div>
-            </div>
-            <nav>
-                <a href="index.html">Shop</a>
-                <a href="login.html">Login</a>
-                <a href="admin.html" class="active">Admin</a>
-            </nav>
+
+  <header class="topbar">
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-text">
+          <h1>Shopping Cart</h1>
+          <p>Fresh groceries and daily essentials</p>
         </div>
-    </header>
+      </div>
+      <nav>
+        <a href="index.html">Shop</a>
+        <a href="login.html">Login</a>
+        <a href="admin.html" class="active">Admin</a>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container admin-page">
-        <section class="admin-grid">
-            <div class="card">
-                <h2>Category Form</h2>
-                <form id="categoryForm">
-                    <input type="hidden" id="oldCategoryName" />
+  <main class="container admin-page">
 
-                    <label for="categoryName">Category Name</label>
-                    <input type="text" id="categoryName" required />
+    <!-- Page Header with Stats -->
+    <div class="admin-header">
+      <div>
+        <h2 class="admin-page-title">Admin Panel</h2>
+        <p class="admin-page-sub">Manage your products and categories</p>
+      </div>
+      <div class="admin-stats">
+        <div class="stat-chip">
+          <span class="stat-label">Categories</span>
+          <span class="stat-value" id="statCategories">0</span>
+        </div>
+        <div class="stat-chip">
+          <span class="stat-label">Products</span>
+          <span class="stat-value" id="statProducts">0</span>
+        </div>
+      </div>
+    </div>
 
-                    <div class="action-group">
-                        <button type="submit" class="btn btn-primary">Save Category</button>
-                        <button type="button" id="cancelCategoryEdit" class="btn btn-secondary hidden">Cancel</button>
-                    </div>
-                </form>
+    <!-- Forms Row -->
+    <section class="admin-grid">
+
+      <!-- Category Form -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div class="admin-card-icon cat-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="admin-card-title">Category</h3>
+            <p class="admin-card-sub">Add or edit a category</p>
+          </div>
+        </div>
+        <form id="categoryForm">
+          <input type="hidden" id="oldCategoryName" />
+          <div class="form-group">
+            <label for="categoryName">Category Name</label>
+            <input type="text" id="categoryName" placeholder="e.g. Fruits, Vegetables..." required />
+          </div>
+          <div class="action-group">
+            <button type="submit" class="btn btn-primary">Save Category</button>
+            <button type="button" id="cancelCategoryEdit" class="btn btn-outline hidden">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Product Form -->
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <div class="admin-card-icon prod-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="admin-card-title">Product</h3>
+            <p class="admin-card-sub">Add or edit a product</p>
+          </div>
+        </div>
+        <form id="productForm">
+          <input type="hidden" id="productId" />
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" id="productName" placeholder="Product name" required />
             </div>
-
-            <div class="card">
-                <h2>Add Product</h2>
-                <form id="productForm">
-                    <input type="hidden" id="productId" />
-
-                    <label for="productName">Product Name</label>
-                    <input type="text" id="productName" required />
-
-                    <label for="productCategory">Category</label>
-                    <select id="productCategory" required></select>
-
-                    <label for="productPrice">Price</label>
-                    <input type="number" id="productPrice" min="0" step="0.01" required />
-
-                    <label for="productDescription">Description</label>
-                    <textarea id="productDescription" rows="3" required></textarea>
-
-                    <label for="productImage">Image URL</label>
-                    <input type="text" id="productImage" placeholder="https://example.com/image.jpg" required />
-
-                    <button type="submit" class="btn btn-primary">Save Product</button>
-                </form>
+            <div class="form-group">
+              <label for="productCategory">Category</label>
+              <select id="productCategory" required></select>
             </div>
-        </section>
-
-        <section class="card">
-            <h2>Categories</h2>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Category Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="categoryTableBody"></tbody>
-                </table>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="productPrice">Price (LKR)</label>
+              <input type="number" id="productPrice" min="0" step="0.01" placeholder="0.00" required />
             </div>
-        </section>
-
-        <section class="card">
-            <h2>Products</h2>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="productTableBody"></tbody>
-                </table>
+            <div class="form-group">
+              <label for="productImage">Image URL</label>
+              <input type="text" id="productImage" placeholder="https://..." required />
             </div>
-        </section>
-    </main>
+          </div>
+          <div class="form-group">
+            <label for="productDescription">Description</label>
+            <textarea id="productDescription" rows="2" placeholder="Short product description..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">Save Product</button>
+        </form>
+      </div>
+    </section>
 
-    <script src="js/data.js"></script>
-    <script src="js/admin.js"></script>
+    <!-- Categories Table -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <div class="admin-card-icon cat-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="admin-card-title">All Categories</h3>
+          <p class="admin-card-sub">Manage your product categories</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Category Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="categoryTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Products Table -->
+    <section class="admin-card">
+      <div class="admin-card-header">
+        <div class="admin-card-icon prod-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div>
+          <h3 class="admin-card-title">All Products</h3>
+          <p class="admin-card-sub">Manage your product listings</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast -->
+  <div id="adminToast" class="admin-toast hidden"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
 </body>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <div>
+        <h3>Shopping Cart</h3>
+        <p>Fresh groceries and daily essentials delivered to your door.</p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="index.html">All Products</a></li>
+          <li><a href="index.html">Vegetables</a></li>
+          <li><a href="index.html">Fruits</a></li>
+          <li><a href="index.html">Cakes</a></li>
+          <li><a href="index.html">Biscuits</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="login.html">User Login</a></li>
+          <li><a href="login.html">Admin Login</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Admin</h4>
+        <ul>
+          <li><a href="admin.html">Admin Panel</a></li>
+          <li><a href="admin.html">Manage Products</a></li>
+          <li><a href="admin.html">Manage Categories</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 Shopping Cart Application. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
 </html>
