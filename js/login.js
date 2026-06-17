@@ -86,7 +86,8 @@ function togglePw(inputId, btn) {
 // SIMULATED SOCIAL LOGIN
 // -----------------------------------------------
 function socialLogin(provider) {
-  showMessage(provider + " Login clicked. Add your " + provider + " App ID to activate.", "#2563eb");
+  // showMessage(provider + " Login clicked. Add your " + provider + " App ID to activate.", "#2563eb");
+  showMessage(provider + " Login clicked. " + provider + " API keys are not connected yet .", "#2563eb");
 }
 
 // -----------------------------------------------
